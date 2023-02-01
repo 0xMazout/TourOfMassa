@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const MATCH_TEXT = 'Deployment success with events: ';
+
 interface IMetaData {
   dependencies: string[];
 }
@@ -20,7 +22,11 @@ export function run(source: string): Promise<string> {
       metadata: { dependencies: [] },
     })
     .then((r) => {
-      return r.data.split('Deployment success with events: ')[1];
+      const output = r.data;
+      if (output.includes(MATCH_TEXT)) {
+        return output.split(MATCH_TEXT)[1];
+      }
+      return output
     });
 }
 
