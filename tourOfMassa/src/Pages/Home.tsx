@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import massaLogoLight from "../assets/Massa_Dark_Detailed_Low.png";
-import Editor from "@monaco-editor/react";
-import { getSource, run } from "../services/axios";
+import React, { useEffect, useState } from 'react';
+import massaLogoLight from '../assets/Massa_Dark_Detailed_Low.png';
+import Editor from '@monaco-editor/react';
+import { getSource, run } from '../services/axios';
 
 function Home() {
-  const [valueEditor, setValueEditor] = useState("Loading...");
+  const [valueEditor, setValueEditor] = useState('Loading...');
 
   function handleEditorChange(value: any, event: any) {
     setValueEditor(value);
   }
 
-  const [outputValue, setOutputValue] = useState("");
+  const [outputValue, setOutputValue] = useState('');
 
   useEffect(() => {
-    getSource("").then((res) => {
+    getSource('').then((res) => {
       setValueEditor(res);
     });
   }, []);
