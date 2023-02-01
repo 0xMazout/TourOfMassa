@@ -6,8 +6,8 @@ import {fileType} from "../utils/enums";
 
 function Home() {
   const [valueEditor, setValueEditor] = useState("Loading...");
-  const [outputValue, setOutputValue] = useState("Loading...");
-
+  const [outputValue, setOutputValue] = useState("Press Run to see the result");
+  const [contentValue, setContentValue] = useState("Loading...")
   
   
   useEffect(() => {
@@ -15,7 +15,7 @@ function Home() {
       setValueEditor(res);
     });
     getDataFile("", fileType.markdown).then((res) => {
-      setOutputValue(res);
+      setContentValue(res);
     });
   }, []);
   
@@ -32,7 +32,7 @@ function Home() {
     <>
       <div className="p-5 flex items-center justify-between">
         <img className="max-h-6" src={massaLogoLight} alt="Thyra Logo" />
-        <h1 className="text-2xl ml-6 font-bold ">Massa Tour</h1>
+        <h1 className="text-2xl font-bold ">Massa In Actions</h1>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
           onClick={onRun}
@@ -41,32 +41,34 @@ function Home() {
         </button>
       </div>
 
-      <section className="h-full grid grid-cols-2 flex-col bg-slate-700">
+      <section className="grid grid-cols-2 flex-col text-white bg-slate-700 ">
         {/* This is the Block of Documentation Description */}
-        <div className="h-full flex flex-col">
+        <div className="overflow-auto text-justify flex flex-col h-[60vh]">
           <div className="flex flex-col">
-            <h1 className="text-2xl font-bold">Tour of Massa</h1>
-            <p className="text-sm">
-              {outputValue}
-            </p>
+            <h1 className="text-2xl font-bold">Documentation</h1>
+            <div className=" text-sm h-fit">
+              {contentValue}
+            </div>
           </div>
         </div>
-        <div className="flex">
+        <div className="flex h-[60vh]">
           <Editor
-            height="80vh"
+            height=""
             defaultLanguage="typescript"
             defaultValue={valueEditor}
             theme="vs-dark"
             onChange={handleEditorChange}
+            className=""
           />
         </div>
       </section>
-      <section className="bg-slate-400">
+      <section className="bg-slate-400 h-full">
         <div className="rounded-2xl">
-          <h1>Result</h1>
+          <h1 className=" text-2xl">Result</h1>
           <pre>{outputValue}</pre>
         </div>
       </section>
+
     </>
   );
 }
