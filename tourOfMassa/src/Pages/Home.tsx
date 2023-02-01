@@ -1,29 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import massaLogoLight from '../assets/Massa_Dark_Detailed_Low.png';
-import Editor from '@monaco-editor/react';
-import { getSource, run } from '../services/axios';
+import React, { useEffect, useState } from "react";
+import massaLogoLight from "../assets/Massa_Dark_Detailed_Low.png";
+import Editor from "@monaco-editor/react";
+import { getDataFile, run } from "../services/axios";
+import {fileType} from "../utils/enums";
 
 function Home() {
-  const [valueEditor, setValueEditor] = useState('Loading...');
+  const [valueEditor, setValueEditor] = useState("Loading...");
+  const [outputValue, setOutputValue] = useState("Loading...");
 
+  
+  
+  useEffect(() => {
+    getDataFile("").then((res) => {
+      setValueEditor(res);
+    });
+    getDataFile("", fileType.markdown).then((res) => {
+      setOutputValue(res);
+    });
+  }, []);
+  
   function handleEditorChange(value: any, event: any) {
     setValueEditor(value);
   }
-
-  const [outputValue, setOutputValue] = useState('');
-
-  useEffect(() => {
-    getSource('').then((res) => {
-      setValueEditor(res);
-    });
-  }, []);
-
+  
   function onRun() {
     run(valueEditor).then((output) => {
       setOutputValue(output);
     });
   }
-
   return (
     <>
       <div className="p-5 flex items-center justify-between">
@@ -43,7 +47,7 @@ function Home() {
           <div className="flex flex-col">
             <h1 className="text-2xl font-bold">Tour of Massa</h1>
             <p className="text-sm">
-              This is a documentation of the Massa project
+              {outputValue}
             </p>
           </div>
         </div>
