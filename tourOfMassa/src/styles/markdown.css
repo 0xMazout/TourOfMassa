@@ -34,7 +34,7 @@
 padding:1em;
 margin:auto;
 max-width:42em;
-background:#fefefe70;
+background:#111010;
 }
 
 #reactMarkDown h1, #reactMarkDown h2, #reactMarkDown h3, #reactMarkDown h4, #reactMarkDown h5, #reactMarkDown h6 {
@@ -47,7 +47,7 @@ background:#fefefe70;
 }
 
 #reactMarkDown h2 {
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #111010;
     color: #ffffff;
     font-size: 24px;
 }
@@ -73,8 +73,8 @@ background:#fefefe70;
 #reactMarkDown hr {
     height: 0.2em;
     border: 0;
-    color: #CCCCCC;
-    background-color: #CCCCCC;
+    color: #ffffff;
+    background-color: #252525;
 }
 
 #reactMarkDown p, #reactMarkDown blockquote, #reactMarkDown ul, #reactMarkDown ol, #reactMarkDown dl, #reactMarkDown li, #reactMarkDown table, #reactMarkDown pre {
@@ -88,13 +88,13 @@ background:#fefefe70;
 }
 
 #reactMarkDown code {
-    border: 1px solid #EAEAEA;
+    border: 1px solid #ffffff;
     margin: 0 2px;
     padding: 0 5px;
 }
 
 #reactMarkDown pre {
-    border: 1px solid #111010;
+    border: 1px solid #ffffff;
     line-height: 1.25em;
     overflow: auto;
     padding: 6px 10px;
@@ -111,4 +111,10 @@ background:#fefefe70;
     color: #1c7ad7;
     background-color: inherit;
     text-decoration: none;
+}
+#reactMarkDown  a:hover, #reactMarkDown  a:active {
+    color: #ffffff;
+    background-color: #1c7ad7;
+    text-decoration: none;
+    border-radius: 5px;
 }
