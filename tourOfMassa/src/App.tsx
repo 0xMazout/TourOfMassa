@@ -1,5 +1,5 @@
 import Home from './Pages/Home';
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route, Outlet, Link } from 'react-router-dom';
 function App() {
   return (
     <div className="App">

@@ -26,19 +26,28 @@ export function run(source: string): Promise<string> {
       if (output.includes(MATCH_TEXT)) {
         return output.split(MATCH_TEXT)[1];
       }
-      return output
+      return output;
     });
 }
 
 export function getDataFile(name: string, typeFile?: string): Promise<string> {
   //Del when routing is ok
-  name = "generate-event";
-  if (typeFile === "md") return axios.get(`http://localhost:3000/pages/${name}/content.md`).then((r) => { return r.data; });
-  if (typeFile === "json") return axios.get(`http://localhost:3000/pages/${name}/metadata.json`).then((r) => { return r.data; });
+  name = 'generate-event';
+  if (typeFile === 'md')
+    return axios
+      .get(`http://localhost:3000/pages/${name}/content.md`)
+      .then((r) => {
+        return r.data;
+      });
+  if (typeFile === 'json')
+    return axios
+      .get(`http://localhost:3000/pages/${name}/metadata.json`)
+      .then((r) => {
+        return r.data;
+      });
   return axios
     .get(`http://localhost:3000/pages/${name}/source.ts`)
     .then((r) => {
       return r.data;
     });
 }
-

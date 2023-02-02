@@ -1,4 +1,4 @@
 export enum fileType {
-    markdown  = "md",
-    json      = "json",
+  markdown = 'md',
+  json = 'json',
 }

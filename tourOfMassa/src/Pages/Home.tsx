@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from "react";
-import massaLogoLight from "../assets/Massa_Dark_Detailed_Low.png";
-import Editor from "@monaco-editor/react";
-import { getDataFile, run } from "../services/axios";
-import {fileType} from "../utils/enums";
+import React, { useEffect, useState } from 'react';
+import massaLogoLight from '../assets/Massa_Dark_Detailed_Low.png';
+import Editor from '@monaco-editor/react';
+import { getDataFile, run } from '../services/axios';
+import { fileType } from '../utils/enums';
 
 function Home() {
-  const [valueEditor, setValueEditor] = useState("Loading...");
-  const [outputValue, setOutputValue] = useState("Press Run to see the result");
-  const [contentValue, setContentValue] = useState("Loading...")
-  
-  
+  const [valueEditor, setValueEditor] = useState('Loading...');
+  const [outputValue, setOutputValue] = useState('Press Run to see the result');
+  const [contentValue, setContentValue] = useState('Loading...');
+
   useEffect(() => {
-    getDataFile("").then((res) => {
+    getDataFile('').then((res) => {
       setValueEditor(res);
     });
-    getDataFile("", fileType.markdown).then((res) => {
+    getDataFile('', fileType.markdown).then((res) => {
       setContentValue(res);
     });
   }, []);
-  
+
   function handleEditorChange(value: any, event: any) {
     setValueEditor(value);
   }
-  
+
   function onRun() {
     run(valueEditor).then((output) => {
       setOutputValue(output);
@@ -46,9 +45,7 @@ function Home() {
         <div className="overflow-auto text-justify flex flex-col h-[60vh]">
           <div className="flex flex-col">
             <h1 className="text-2xl font-bold">Documentation</h1>
-            <div className=" text-sm h-fit">
-              {contentValue}
-            </div>
+            <div className=" text-sm h-fit">{contentValue}</div>
           </div>
         </div>
         <div className="flex h-[60vh]">
@@ -68,7 +65,6 @@ function Home() {
           <pre>{outputValue}</pre>
         </div>
       </section>
-
     </>
   );
 }
