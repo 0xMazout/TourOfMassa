@@ -62,7 +62,7 @@ function Home() {
           />
         </div>
       </section>
-      <section className="bg-slate-400 h-full">
+      <section className="bg-slate-400 h-[60vh]">
         <div className="rounded-2xl">
           <h1 className=" text-2xl">Result</h1>
           <pre>{outputValue}</pre>
