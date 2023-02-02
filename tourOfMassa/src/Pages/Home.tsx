@@ -3,6 +3,7 @@ import massaLogoLight from '../assets/Massa_Dark_Detailed_Low.png';
 import Editor from '@monaco-editor/react';
 import { getDataFile, run } from '../services/axios';
 import { fileType } from '../utils/enums';
+import ReactMarkdown from 'react-markdown';
 
 function Home() {
   const [valueEditor, setValueEditor] = useState('Loading...');
@@ -12,7 +13,6 @@ function Home() {
 
   useEffect(() => {
     const handleHashChange = () => {
-      console.log('changes ' + window.location.hash);
       setName(window.location.hash.replace('#', ''));
     };
     setName(window.location.hash.replace('#', ''));
@@ -56,11 +56,10 @@ function Home() {
       </div>
 
       <section className="grid grid-cols-2 flex-col text-white bg-slate-700 ">
-        {/* This is the Block of Documentation Description */}
         <div className="overflow-auto text-justify flex flex-col h-[60vh]">
           <div className="flex flex-col">
             <h1 className="text-2xl font-bold">Documentation</h1>
-            <div className=" text-sm h-fit">{contentValue}</div>
+            <ReactMarkdown children={contentValue} />
           </div>
         </div>
         <div className="flex h-[60vh]">
