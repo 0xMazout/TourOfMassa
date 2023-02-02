@@ -84,7 +84,7 @@ function Home() {
     <>
       <div className="p-5 flex items-center justify-between">
         <img className="max-h-6" src={massaLogoLight} alt="Thyra Logo" />
-        <h1 className="text-2xl font-bold ">Massa In Actions</h1>
+        <h1 className="text-2xl font-bold ">Massa In Action</h1>
         {showRunButton()}
       </div>
 
@@ -110,7 +110,7 @@ function Home() {
         </div>
       </section>
       <section className="bg-slate-300 h-[40vh] overflow-auto text-justify">
-        <div className="rounded-2xl">
+        <div className="rounded-2xl mx-4">
           <h1 className=" text-2xl font-semibold">Output</h1>
           <pre>{outputValue}</pre>
         </div>
