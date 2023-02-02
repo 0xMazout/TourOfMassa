@@ -8,18 +8,18 @@ interface IMetaData {
 
 interface IRunRequest {
   source: string;
-  metadata: IMetaData;
+  name: string;
 }
 
 interface IRunResponse {
   data: string;
 }
 
-export function run(source: string): Promise<string> {
+export function run(source: string, name: string): Promise<string> {
   return axios
-    .post<IRunRequest, IRunResponse>('http://localhost:3000/run', {
+    .post<any, IRunResponse, IRunRequest>('http://localhost:3000/run', {
       source,
-      metadata: { dependencies: [] },
+      name,
     })
     .then((r) => {
       const output = r.data;
@@ -31,8 +31,6 @@ export function run(source: string): Promise<string> {
 }
 
 export function getDataFile(name: string, typeFile?: string): Promise<string> {
-  //Del when routing is ok
-  name = 'generate-event';
   if (typeFile === 'md')
     return axios
       .get(`http://localhost:3000/pages/${name}/content.md`)

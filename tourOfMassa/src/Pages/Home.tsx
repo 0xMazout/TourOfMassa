@@ -8,22 +8,37 @@ function Home() {
   const [valueEditor, setValueEditor] = useState('Loading...');
   const [outputValue, setOutputValue] = useState('Press Run to see the result');
   const [contentValue, setContentValue] = useState('Loading...');
+  const [name, setName] = useState('');
 
   useEffect(() => {
-    getDataFile('').then((res) => {
+    const handleHashChange = () => {
+      console.log('changes ' + window.location.hash);
+      setName(window.location.hash.replace('#', ''));
+    };
+    setName(window.location.hash.replace('#', ''));
+
+    window.addEventListener('hashchange', handleHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    getDataFile(name).then((res) => {
       setValueEditor(res);
     });
-    getDataFile('', fileType.markdown).then((res) => {
+    getDataFile(name, fileType.markdown).then((res) => {
       setContentValue(res);
     });
-  }, []);
+  }, [name]);
 
   function handleEditorChange(value: any, event: any) {
     setValueEditor(value);
   }
 
   function onRun() {
-    run(valueEditor).then((output) => {
+    run(valueEditor, name).then((output) => {
       setOutputValue(output);
     });
   }
@@ -56,6 +71,7 @@ function Home() {
             theme="vs-dark"
             onChange={handleEditorChange}
             className=""
+            value={valueEditor}
           />
         </div>
       </section>
