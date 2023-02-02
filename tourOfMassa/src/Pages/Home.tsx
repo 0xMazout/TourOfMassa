@@ -4,6 +4,7 @@ import Editor from '@monaco-editor/react';
 import { getDataFile, run } from '../services/axios';
 import { fileType } from '../utils/enums';
 import ReactMarkdown from 'react-markdown';
+import '../styles/markdown.css';
 
 function Home() {
   const [valueEditor, setValueEditor] = useState('Loading...');
@@ -87,11 +88,13 @@ function Home() {
         {showRunButton()}
       </div>
 
-      <section className="grid grid-cols-2 flex-col text-white bg-slate-700 ">
+      <section className="grid grid-cols-2 flex-col text-white bg-gradient-to-tl bg-gray-800 ">
         <div className="overflow-auto text-justify flex flex-col h-[60vh]">
-          <div className="flex flex-col">
-            <h1 className="text-2xl font-bold">Documentation</h1>
-            <ReactMarkdown children={contentValue} />
+          <div className="flex flex-col mx-4">
+            {/* <h1 className="text-2xl font-bold">Documentation</h1> */}
+            <div id='reactMarkDown'>
+            <ReactMarkdown children={contentValue}/>
+            </div>
           </div>
         </div>
         <div className="flex h-[60vh]">
@@ -106,9 +109,9 @@ function Home() {
           />
         </div>
       </section>
-      <section className="bg-slate-400 h-[40vh] overflow-auto text-justify">
+      <section className="bg-slate-300 h-[40vh] overflow-auto text-justify">
         <div className="rounded-2xl">
-          <h1 className=" text-2xl">Result</h1>
+          <h1 className=" text-2xl font-semibold">Output</h1>
           <pre>{outputValue}</pre>
         </div>
       </section>
